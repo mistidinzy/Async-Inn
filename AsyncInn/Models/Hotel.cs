@@ -27,9 +27,4 @@ namespace Async_Inn.Models
         public string Phone { get; set; }
 
     }
-
-    public class HotelDBContext : DbContext
-    {
-        public DbSet<Hotel> Hotels { get; set; }
-    }
 }
