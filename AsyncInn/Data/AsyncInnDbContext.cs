@@ -11,5 +11,24 @@ namespace Async_Inn.Data
         }
 
         public DbSet<Hotel> Hotels { get; set; }
+
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Hotel>().HasData(
+                new Hotel {
+                    ID = 54,
+                    Name = "BananaTown",
+                    StreetAddress = "42 Wallaby Way",
+                    City = "Sydney",
+                    State = "Iowa",
+                    Country = "Australia",
+                    Phone = "333-222-1111"
+                }
+            );
+        }
     }
 }
+
