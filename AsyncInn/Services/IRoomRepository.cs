@@ -9,6 +9,8 @@ namespace Async_Inn.Services
 {
     public interface IRoomRepository
     {
+        //Promise to return a list of students
+        // We have to use task because we have an await 
         Task<List<Room>> GetAll();
 
         
