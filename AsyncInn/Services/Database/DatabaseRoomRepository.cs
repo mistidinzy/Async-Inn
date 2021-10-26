@@ -25,6 +25,7 @@ namespace Async_Inn.Services.Database
             //return new List<Room>
 
             //{
+            // don't need to get info from db, can add in 
             //    new Room { Name = "The Hotel Where It Happened" }
             //};
             

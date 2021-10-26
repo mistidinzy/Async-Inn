@@ -46,6 +46,9 @@ namespace Async_Inn.Controllers
             return room;
         }
 
+
+        // when refactoring away the PUT, can also refactor RoomExists
+
         // PUT: api/Rooms/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
