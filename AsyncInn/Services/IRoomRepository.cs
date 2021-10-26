@@ -3,5 +3,7 @@ namespace Async_Inn.Services
 {
     public interface IRoomRepository
     {
+
+
     }
 }

@@ -1,4 +1,6 @@
 ﻿using Async_Inn.Data;
+using Async_Inn.Services;
+using Async_Inn.Services.Database;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -29,6 +31,11 @@ namespace AsyncInn
            });
 
             services.AddControllers();
+
+            //Add repository/services
+
+            services.AddSingleton<IRoomRepository, DatabaseRoomRepository>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
