@@ -34,7 +34,7 @@ namespace AsyncInn
 
             //Add repository/services
 
-            services.AddSingleton<IRoomRepository, DatabaseRoomRepository>();
+            services.AddScoped<IRoomRepository, DatabaseRoomRepository>();
 
         }
 
