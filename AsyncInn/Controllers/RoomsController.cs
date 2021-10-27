@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Async_Inn.Data;
 using Async_Inn.Models;
+using Async_Inn.Services;
 
 namespace Async_Inn.Controllers
 {
@@ -14,10 +15,12 @@ namespace Async_Inn.Controllers
     [ApiController]
     public class RoomsController : ControllerBase
     {
+        private readonly IRoomRepository rooms;
         private readonly AsyncInnDbContext _context;
 
-        public RoomsController(AsyncInnDbContext context)
+        public RoomsController(IRoomRepository rooms, AsyncInnDbContext context)
         {
+            this.rooms = rooms;
             _context = context;
         }
 
@@ -25,7 +28,8 @@ namespace Async_Inn.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Room>>> GetRooms()
         {
-            return await _context.Rooms.ToListAsync();
+            //return await _context.Rooms.ToListAsync();
+            return await rooms.GetAll();
         }
 
         // GET: api/Rooms/5
@@ -41,6 +45,9 @@ namespace Async_Inn.Controllers
 
             return room;
         }
+
+
+        // when refactoring away the PUT, can also refactor RoomExists
 
         // PUT: api/Rooms/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
