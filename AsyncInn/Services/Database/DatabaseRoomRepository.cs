@@ -19,18 +19,7 @@ namespace Async_Inn.Services.Database
         public async Task<List<Room>> GetAll()
         {
             return await _context.Rooms.ToListAsync();
-
-            //throw new NotImplementedException();
-
-            //return new List<Room>
-
-            //{
-            // don't need to get info from db, can add in 
-            //    new Room { Name = "The Hotel Where It Happened" }
-            //};
             
         }
-
-        //Task<Room> GetById(int id);
     }
 }
