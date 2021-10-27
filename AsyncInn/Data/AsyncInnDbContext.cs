@@ -1,6 +1,7 @@
 ﻿using System;
 using Async_Inn.Models;
 using Async_Inn.Models.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Async_Inn.Data
@@ -16,6 +17,7 @@ namespace Async_Inn.Data
         public DbSet<Amenity> Amenities { get; set; }
         public DbSet<HotelRoom> HotelRooms { get; set; }
         public DbSet<RoomAmenity> RoomAmenities { get; set; }
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -52,6 +54,14 @@ namespace Async_Inn.Data
                     Name = "Free Wifi"
                 }
             );
+
+            modelBuilder.Entity<HotelRoom>()
+                // new { ... } makes an "anonymous type"
+                .HasKey(hr => new { hr.HotelId, hr.RoomId }
+            );
+
+            modelBuilder.Entity<RoomAmenity>()
+                .HasKey(ra => new { ra.RoomId, ra.AmenityId });
         }
     }
 }
