@@ -1,10 +1,11 @@
 ﻿using System;
 using Async_Inn.Models;
+using Async_Inn.Models.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace Async_Inn.Data
 {
-    public class AsyncInnDbContext : DbContext
+    public class AsyncInnDbContext : IdentityDbContext<ApplicationUser>
     {
         public AsyncInnDbContext(DbContextOptions options) : base(options)
         {

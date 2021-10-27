@@ -1,10 +1,12 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Identity;
+
 namespace Async_Inn.Models.Identity
 {
-    public class ApplicationUser
+    public class ApplicationUser : IdentityUser
     {
-        public ApplicationUser()
-        {
-        }
+       [Column(TypeName = "DATE")] //Store in SQL as a Date, instead of DateTime
+       public DateTime? DateOfBirth { get; set; }
     }
 }
