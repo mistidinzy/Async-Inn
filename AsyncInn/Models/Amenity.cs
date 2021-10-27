@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Async_Inn.Models
@@ -10,5 +11,6 @@ namespace Async_Inn.Models
         [Required]
         public string Name { get; set; }
 
+        public List<RoomAmenity> RoomAmenities { get; set; }
     }
 }
