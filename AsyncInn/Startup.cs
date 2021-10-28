@@ -68,8 +68,9 @@ namespace AsyncInn
                     await context.Response.WriteAsync("Hello World!");
                 });
 
-                app.UseSwagger(options => {
-                    options.RouteTemplate = "/api/{v1}/swagger.json";
+                app.UseSwaggerUI(options => {
+                    options.SwaggerEndpoint("/api/v1/swagger.json", "Student Demo");
+                    options.RoutePrefix = "docs";
                 });
             });
         }
