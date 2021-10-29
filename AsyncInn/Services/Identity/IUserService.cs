@@ -9,6 +9,6 @@ namespace Async_Inn.Services
     {
         public Task<UserDTO> Register(RegisterUserDTO data, ModelStateDictionary modelState);
         public Task<UserDTO> Authenticate(string username, string password);
-
+        public Task<UserDTO> Authenticate(LoginData data);
     }
 }
