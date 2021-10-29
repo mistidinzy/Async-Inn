@@ -18,8 +18,7 @@ namespace Async_Inn.Services.Database
 
         public async Task<List<Room>> GetAll()
         {
-            return await _context.Rooms.ToListAsync();
-            
+            return await _context.Rooms.ToListAsync();  
         }
     }
 }

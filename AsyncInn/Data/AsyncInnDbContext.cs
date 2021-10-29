@@ -8,6 +8,8 @@ namespace Async_Inn.Data
 {
     public class AsyncInnDbContext : IdentityDbContext<ApplicationUser>
     {
+        internal readonly object HotelRoom;
+
         public AsyncInnDbContext(DbContextOptions options) : base(options)
         {
         }
@@ -55,8 +57,7 @@ namespace Async_Inn.Data
                 }
             );
 
-            modelBuilder.Entity<HotelRoom>()
-                // new { ... } makes an "anonymous type"
+            modelBuilder.Entity<HotelRoom>() 
                 .HasKey(hr => new { hr.HotelId, hr.RoomId }
             );
 
