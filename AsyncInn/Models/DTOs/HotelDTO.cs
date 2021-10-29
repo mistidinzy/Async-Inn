@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Async_Inn.Models.DTOs
@@ -24,6 +25,8 @@ namespace Async_Inn.Models.DTOs
 
         [Required]
         public string Phone { get; set; }
+
+        public List<HotelRoomDTO> Rooms { get; set; }
 
     }
 }
