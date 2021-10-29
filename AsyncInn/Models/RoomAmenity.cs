@@ -1,7 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-
-namespace Async_Inn.Models
+﻿namespace Async_Inn.Models
 {
     public class RoomAmenity
     {
