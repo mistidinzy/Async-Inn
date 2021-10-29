@@ -1,9 +1,11 @@
 ﻿using Async_Inn.Data;
+using Async_Inn.Models.Identity;
 using Async_Inn.Services;
 using Async_Inn.Services.Database;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -47,6 +49,15 @@ namespace AsyncInn
                 });
             });
 
+            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+            {
+                options.User.RequireUniqueEmail = true;
+                // There are other options like this
+            })
+
+                .AddEntityFrameworkStores<AsyncInnDbContext>();
+
+            services.AddTransient<IUserService, IdentityUserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -69,7 +80,7 @@ namespace AsyncInn
                 });
 
                 app.UseSwaggerUI(options => {
-                    options.SwaggerEndpoint("/api/v1/swagger.json", "Student Demo");
+                    options.SwaggerEndpoint("/api/v1/swagger.json", "Async Inn");
                     options.RoutePrefix = "docs";
                 });
             });
