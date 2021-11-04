@@ -12,47 +12,47 @@ namespace Async_Inn.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class RoomsController : ControllerBase
+    public class AmenitiesController : ControllerBase
     {
         private readonly AsyncInnDbContext _context;
 
-        public RoomsController(AsyncInnDbContext context)
+        public AmenitiesController(AsyncInnDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/Rooms
+        // GET: api/Amenities
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Room>>> GetRooms()
+        public async Task<ActionResult<IEnumerable<Amenity>>> GetAmenities()
         {
-            return await _context.Rooms.ToListAsync();
+            return await _context.Amenities.ToListAsync();
         }
 
-        // GET: api/Rooms/5
+        // GET: api/Amenities/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Room>> GetRoom(int id)
+        public async Task<ActionResult<Amenity>> GetAmenity(int id)
         {
-            var room = await _context.Rooms.FindAsync(id);
+            var amenity = await _context.Amenities.FindAsync(id);
 
-            if (room == null)
+            if (amenity == null)
             {
                 return NotFound();
             }
 
-            return room;
+            return amenity;
         }
 
-        // PUT: api/Rooms/5
+        // PUT: api/Amenities/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutRoom(int id, Room room)
+        public async Task<IActionResult> PutAmenity(int id, Amenity amenity)
         {
-            if (id != room.Id)
+            if (id != amenity.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(room).State = EntityState.Modified;
+            _context.Entry(amenity).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +60,7 @@ namespace Async_Inn.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!RoomExists(id))
+                if (!AmenityExists(id))
                 {
                     return NotFound();
                 }
@@ -73,38 +73,36 @@ namespace Async_Inn.Controllers
             return NoContent();
         }
 
-        // POST: api/Rooms
+        // POST: api/Amenities
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Room>> PostRoom(Room room)
+        public async Task<ActionResult<Amenity>> PostAmenity(Amenity amenity)
         {
-            _context.Rooms.Add(room);
+            _context.Amenities.Add(amenity);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetRoom", new { id = room.Id }, room);
+            return CreatedAtAction("GetAmenity", new { id = amenity.Id }, amenity);
         }
 
-        // DELETE: api/Rooms/5
+        // DELETE: api/Amenities/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteRoom(int id)
+        public async Task<IActionResult> DeleteAmenity(int id)
         {
-            var room = await _context.Rooms.FindAsync(id);
-            if (room == null)
+            var amenity = await _context.Amenities.FindAsync(id);
+            if (amenity == null)
             {
                 return NotFound();
             }
 
-            _context.Rooms.Remove(room);
+            _context.Amenities.Remove(amenity);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool RoomExists(int id)
+        private bool AmenityExists(int id)
         {
-            return _context.Rooms.Any(e => e.Id == id);
+            return _context.Amenities.Any(e => e.Id == id);
         }
-
-
     }
 }

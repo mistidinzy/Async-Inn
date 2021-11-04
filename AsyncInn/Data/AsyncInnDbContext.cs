@@ -8,6 +8,8 @@ namespace Async_Inn.Data
 {
     public class AsyncInnDbContext : IdentityDbContext<ApplicationUser>
     {
+       
+
         public AsyncInnDbContext(DbContextOptions options) : base(options)
         {
         }
@@ -18,6 +20,7 @@ namespace Async_Inn.Data
         public DbSet<HotelRoom> HotelRooms { get; set; }
         public DbSet<RoomAmenity> RoomAmenities { get; set; }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+       
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -55,8 +58,7 @@ namespace Async_Inn.Data
                 }
             );
 
-            modelBuilder.Entity<HotelRoom>()
-                // new { ... } makes an "anonymous type"
+            modelBuilder.Entity<HotelRoom>() 
                 .HasKey(hr => new { hr.HotelId, hr.RoomId }
             );
 

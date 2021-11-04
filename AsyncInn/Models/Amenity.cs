@@ -14,3 +14,4 @@ namespace Async_Inn.Models
         public List<RoomAmenity> RoomAmenities { get; set; }
     }
 }
+
