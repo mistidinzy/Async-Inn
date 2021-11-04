@@ -9,6 +9,7 @@ namespace Async_Inn.Models
         public int RoomId { get; set; }
         public int RoomNumber { get; set; }
         public bool PetFriendly { get; set; }
+        public bool IsHaunted { get; set; }
 
         public List<Hotel> Hotels { get; set; }
         public List<Room> Rooms { get; set; }

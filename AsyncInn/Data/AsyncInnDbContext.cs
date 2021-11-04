@@ -8,7 +8,7 @@ namespace Async_Inn.Data
 {
     public class AsyncInnDbContext : IdentityDbContext<ApplicationUser>
     {
-        internal readonly object HotelRoom;
+       
 
         public AsyncInnDbContext(DbContextOptions options) : base(options)
         {
@@ -20,6 +20,7 @@ namespace Async_Inn.Data
         public DbSet<HotelRoom> HotelRooms { get; set; }
         public DbSet<RoomAmenity> RoomAmenities { get; set; }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+       
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

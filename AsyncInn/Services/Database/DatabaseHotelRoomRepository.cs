@@ -35,10 +35,9 @@ namespace Async_Inn.Services.Database
                 HotelId = hotelId
             };
 
-            _context.HotelRoom.Add(hotelRoom);
+            _context.HotelRooms.Add(hotelRoom);
 
             await _context.SaveChangesAsync();
         }
-
     }
 }
