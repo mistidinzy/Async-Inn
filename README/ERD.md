@@ -106,7 +106,7 @@
 
 ### RoomAmenities
 
-- This is the **JOIN** table. It is to keep track of which rooms have which amenities available, and that’s it.
+- This is the **PURE JOIN** table. It is to keep track of which rooms have which amenities available, and that’s it. (No Payload)
 - Each row contains one composite key, made up of one “*RoomStyle_ID*”, plus one “*Amenity_ID*”.
 
 ---
