@@ -12,13 +12,13 @@
 
 ---
 
-### Build your ERD (Entity Relationship Diagram) so that it has at least:
+### Build your ERD (Entity Relationship Diagram) so that it has at least
 
 - (1) Joint Entity Table with Payload
 - (1) Pure Join Table
 - (1) Enum
 
-### Within your ERD identify/label the following as necessary:
+### Within your ERD identify/label the following as necessary
 
 - Primary Keys
 - Foreign Keys
@@ -44,22 +44,69 @@
 
 ---
 
-## Explanations
+## ERD Version 2.0 / Final
 
-### Tables
-
-- Hotels
-- Rooms
-- Room Styles
-- Ammenities
-- Accommodations
+![ERD Final Image](../images/AsyncInnERDfinal.png)
 
 ---
 
-### Keys
+## Tables
 
-- Primary Keys
-- Foreign Keys
-- Composite Keys
+### Hotel
+
+- This is the main/parent table, which represents the individual hotel buildings and each one’s associated attributes.
+  - **Keys**:
+    - Primary Key: “*Hotel_ID*”
+  - **Attributes**:
+    - *Name*, *StreetAddress*, *City*, *State*, *Country*, *PhoneNumber*
+    - All the varchar data type, because they will be strings which each vary in length.
+  - **Relationships**:
+    - *HotelRoom* - One to Many; For each Hotel, there will be several Hotel Rooms.
+
+> ---
+
+### HotelRoom
+
+- **Keys**:
+  - Primary Key: A composite key of the attribute: “*RoomNumber*”, plus the foreign key: “*Hotel_ID*”.
+  - Foreign Key: “*RoomStyle_ID*”
+- **Attributes**:
+  - *RoomNumber* - int
+  - *Rate* - decimal, to represent the price of the room per night, etc.
+  - *PetFriendly* - bool, states whether or not the room allows pets.
+- **Relationships**:
+  - *RoomStyle* - Many to One; Each Hotel Room will have one Room Style, but that Room Style could apply to several different Hotel Rooms.
+
+> ---
+
+### RoomStyle
+
+- Contains the options available for room accommodations, such as the size and number of beds in the room.
+  - **Keys**:
+    - Primary Key: “*RoomStyle_ID*”
+  - **Attributes**:
+    - *Name* - varchar; Novelty nickname to easily identify each room layout. Such as “*Seahawks Snooze*” and “*Restful Rainier*”.
+    - *Layout* - int, represents one option from an enum of several possible layout options.
+  - **Relationships**:
+    - *RoomAmenities* - One to Many; Each room style will have a varying amount of possible amenities.
+
+> ---
+
+### Amenity
+
+- Contains all of the possible amenities that each room could have.
+  - **Keys**:
+    - Primary Key: “*Amenity_ID*”
+  - **Attributes**:
+    - *Name* - varchar; What the amenity itself is (minibar, hairdryer, coffee maker, etc.)
+  - **Relationships**:
+    - *RoomAmenities* - One to Many; Each amenity can be listed for multiple rooms, but those rooms will only have that amenity specified once.
+
+> ---
+
+### RoomAmenities
+
+- This is the **JOIN** table. It is to keep track of which rooms have which amenities available, and that’s it.
+- Each row contains one composite key, made up of one “*RoomStyle_ID*”, plus one “*Amenity_ID*”.
 
 ---
