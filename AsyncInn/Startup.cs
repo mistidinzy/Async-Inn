@@ -1,4 +1,5 @@
-﻿using Async_Inn.Data;
+﻿using System;
+using Async_Inn.Data;
 using Async_Inn.Models.Identity;
 using Async_Inn.Services;
 using Async_Inn.Services.Database;
@@ -24,15 +25,16 @@ namespace AsyncInn
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            //DBContext registered in ConfigureServices
             services.AddDbContext<AsyncInnDbContext>(options =>
            {
                string connectionString = Configuration.GetConnectionString("DefaultConnection");
                options.UseSqlServer(connectionString);
            });
 
+            //Enable the use of MVC controllers in your ConfigureServices method
             services.AddControllers();
 
             //Add repository/services
@@ -41,7 +43,7 @@ namespace AsyncInn
 
             services.AddSwaggerGen(options =>
             {
-                // Make sure get the "using Statement"
+                //Make sure to get the "using Statement"
                 options.SwaggerDoc("v1", new OpenApiInfo()
                 {
                     Title = "Async Inn",
@@ -52,15 +54,14 @@ namespace AsyncInn
             services.AddIdentity<ApplicationUser, IdentityRole>(options =>
             {
                 options.User.RequireUniqueEmail = true;
-                // There are other options like this
+                //There are other options like this
             })
 
-                .AddEntityFrameworkStores<AsyncInnDbContext>();
-
+            .AddEntityFrameworkStores<AsyncInnDbContext>();
             services.AddTransient<IUserService, IdentityUserService>();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        // Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -68,6 +69,7 @@ namespace AsyncInn
                 app.UseDeveloperExceptionPage();
             }
 
+            //Add explicit routing of Controllers in your ‘Configure’ method
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
@@ -77,6 +79,15 @@ namespace AsyncInn
                 endpoints.MapGet("/", async context =>
                 {
                     await context.Response.WriteAsync("Hello World!");
+                });
+
+                //Create a new get route to prove that it works (i.e. /hey)
+                endpoints.MapGet("/hi", () => "Hello!");
+
+                //Alter this route to throw an exception instead of a response
+                endpoints.MapGet("/500", context =>
+                {
+                  throw new ApplicationException("Boom!");
                 });
 
                 app.UseSwaggerUI(options => {
