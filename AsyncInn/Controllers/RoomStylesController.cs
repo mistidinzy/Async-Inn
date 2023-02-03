@@ -21,38 +21,38 @@ namespace Async_Inn.Controllers
             _context = context;
         }
 
-        // GET: api/Rooms
+        // GET: api/RoomStyles
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<RoomStyle>>> GetRooms()
+        public async Task<ActionResult<IEnumerable<RoomStyle>>> GetRoomStyles()
         {
             return await _context.RoomStyles.ToListAsync();
         }
 
-        // GET: api/Rooms/5
+        // GET: api/RoomStyles/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<RoomStyle>> GetRoom(int id)
+        public async Task<ActionResult<RoomStyle>> GetRoomStyle(int id)
         {
-            var room = await _context.RoomStyles.FindAsync(id);
+            var roomStyle = await _context.RoomStyles.FindAsync(id);
 
-            if (room == null)
+            if (roomStyle == null)
             {
                 return NotFound();
             }
 
-            return room;
+            return roomStyle;
         }
 
-        // PUT: api/Rooms/5
+        // PUT: api/RoomStyles/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutRoom(int id, RoomStyle room)
+        public async Task<IActionResult> PutRoomStyle(int id, RoomStyle roomStyle)
         {
-            if (id != room.Id)
+            if (id != roomStyle.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(room).State = EntityState.Modified;
+            _context.Entry(roomStyle).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +60,7 @@ namespace Async_Inn.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!RoomExists(id))
+                if (!RoomStyleExists(id))
                 {
                     return NotFound();
                 }
@@ -73,38 +73,36 @@ namespace Async_Inn.Controllers
             return NoContent();
         }
 
-        // POST: api/Rooms
+        // POST: api/RoomStyles
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<RoomStyle>> PostRoom(RoomStyle room)
+        public async Task<ActionResult<RoomStyle>> PostRoomStyle(RoomStyle roomStyle)
         {
-            _context.RoomStyles.Add(room);
+            _context.RoomStyles.Add(roomStyle);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetRoom", new { id = room.Id }, room);
+            return CreatedAtAction("GetRoomStyle", new { id = roomStyle.Id }, roomStyle);
         }
 
-        // DELETE: api/Rooms/5
+        // DELETE: api/RoomStyles/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteRoom(int id)
+        public async Task<IActionResult> DeleteRoomStyle(int id)
         {
-            var room = await _context.RoomStyles.FindAsync(id);
-            if (room == null)
+            var roomStyle = await _context.RoomStyles.FindAsync(id);
+            if (roomStyle == null)
             {
                 return NotFound();
             }
 
-            _context.RoomStyles.Remove(room);
+            _context.RoomStyles.Remove(roomStyle);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool RoomExists(int id)
+        private bool RoomStyleExists(int id)
         {
             return _context.RoomStyles.Any(e => e.Id == id);
         }
-
-
     }
 }

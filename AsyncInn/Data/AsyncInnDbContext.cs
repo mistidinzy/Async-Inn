@@ -102,6 +102,15 @@ namespace Async_Inn.Data
                 }
               );
 
+      modelBuilder.Entity<RoomStyle>().HasData(
+              new RoomStyle
+                {
+                  Id = 2,
+                  Name = "Mint Condition",
+                  Layout= 1
+                }
+              );
+
             modelBuilder.Entity<HotelRoom>() 
                 .HasKey(hr => new { hr.HotelId, hr.RoomId }
             );
