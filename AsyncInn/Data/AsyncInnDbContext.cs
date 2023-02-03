@@ -6,10 +6,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Async_Inn.Data
 {
-    public class AsyncInnDbContext : IdentityDbContext<ApplicationUser>
+    public class AsyncInnDbContext : DbContext
     {
-       
-
         public AsyncInnDbContext(DbContextOptions options) : base(options)
         {
         }

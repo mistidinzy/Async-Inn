@@ -27,7 +27,7 @@ namespace AsyncInn
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //DBContext registered in ConfigureServices
+            //Dbcontext registered in ConfigureServices
             services.AddDbContext<AsyncInnDbContext>(options =>
            {
                string connectionString = Configuration.GetConnectionString("DefaultConnection");
@@ -66,7 +66,7 @@ namespace AsyncInn
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+              app.UseDeveloperExceptionPage();
             }
 
             //Add explicit routing of Controllers in your ‘Configure’ method
