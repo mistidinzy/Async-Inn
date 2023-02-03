@@ -4,6 +4,7 @@ using Async_Inn.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AsyncInn.Migrations
 {
     [DbContext(typeof(AsyncInnDbContext))]
-    partial class AsyncInnDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230203171252_AddMoreHotelSeedData")]
+    partial class AddMoreHotelSeedData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -153,32 +156,6 @@ namespace AsyncInn.Migrations
                     b.HasKey("HotelId", "RoomId");
 
                     b.ToTable("HotelRooms");
-
-                    b.HasData(
-                        new
-                        {
-                            HotelId = 54,
-                            RoomId = 1,
-                            IsHaunted = false,
-                            PetFriendly = true,
-                            RoomNumber = 101
-                        },
-                        new
-                        {
-                            HotelId = 4,
-                            RoomId = 2,
-                            IsHaunted = true,
-                            PetFriendly = true,
-                            RoomNumber = 101
-                        },
-                        new
-                        {
-                            HotelId = 7,
-                            RoomId = 3,
-                            IsHaunted = false,
-                            PetFriendly = true,
-                            RoomNumber = 201
-                        });
                 });
 
             modelBuilder.Entity("Async_Inn.Models.Identity.ApplicationUser", b =>
@@ -236,22 +213,7 @@ namespace AsyncInn.Migrations
                     b.ToTable("ApplicationUsers");
                 });
 
-            modelBuilder.Entity("Async_Inn.Models.RoomAmenity", b =>
-                {
-                    b.Property<int>("RoomId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("AmenityId")
-                        .HasColumnType("int");
-
-                    b.HasKey("RoomId", "AmenityId");
-
-                    b.HasIndex("AmenityId");
-
-                    b.ToTable("RoomAmenities");
-                });
-
-            modelBuilder.Entity("Async_Inn.Models.RoomStyle", b =>
+            modelBuilder.Entity("Async_Inn.Models.Room", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -276,13 +238,35 @@ namespace AsyncInn.Migrations
 
                     b.HasIndex("HotelRoomHotelId", "HotelRoomRoomId");
 
-                    b.ToTable("RoomStyles");
+                    b.ToTable("Rooms");
+                });
+
+            modelBuilder.Entity("Async_Inn.Models.RoomAmenity", b =>
+                {
+                    b.Property<int>("RoomId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("AmenityId")
+                        .HasColumnType("int");
+
+                    b.HasKey("RoomId", "AmenityId");
+
+                    b.HasIndex("AmenityId");
+
+                    b.ToTable("RoomAmenities");
                 });
 
             modelBuilder.Entity("Async_Inn.Models.Hotel", b =>
                 {
                     b.HasOne("Async_Inn.Models.HotelRoom", null)
                         .WithMany("Hotels")
+                        .HasForeignKey("HotelRoomHotelId", "HotelRoomRoomId");
+                });
+
+            modelBuilder.Entity("Async_Inn.Models.Room", b =>
+                {
+                    b.HasOne("Async_Inn.Models.HotelRoom", null)
+                        .WithMany("Rooms")
                         .HasForeignKey("HotelRoomHotelId", "HotelRoomRoomId");
                 });
 
@@ -294,7 +278,7 @@ namespace AsyncInn.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Async_Inn.Models.RoomStyle", "Room")
+                    b.HasOne("Async_Inn.Models.Room", "Room")
                         .WithMany("RoomAmenities")
                         .HasForeignKey("RoomId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -303,13 +287,6 @@ namespace AsyncInn.Migrations
                     b.Navigation("Amenity");
 
                     b.Navigation("Room");
-                });
-
-            modelBuilder.Entity("Async_Inn.Models.RoomStyle", b =>
-                {
-                    b.HasOne("Async_Inn.Models.HotelRoom", null)
-                        .WithMany("RoomStyles")
-                        .HasForeignKey("HotelRoomHotelId", "HotelRoomRoomId");
                 });
 
             modelBuilder.Entity("Async_Inn.Models.Amenity", b =>
@@ -321,10 +298,10 @@ namespace AsyncInn.Migrations
                 {
                     b.Navigation("Hotels");
 
-                    b.Navigation("RoomStyles");
+                    b.Navigation("Rooms");
                 });
 
-            modelBuilder.Entity("Async_Inn.Models.RoomStyle", b =>
+            modelBuilder.Entity("Async_Inn.Models.Room", b =>
                 {
                     b.Navigation("RoomAmenities");
                 });

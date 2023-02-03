@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Async_Inn.Services.Database
 {
-    public class DatabaseRoomRepository : IRoomRepository
+    public class DatabaseRoomRepository : IRoomStyleRepository
     {
         private readonly AsyncInnDbContext _context;
 
@@ -16,9 +16,9 @@ namespace Async_Inn.Services.Database
             _context = context;
         }
 
-        public async Task<List<Room>> GetAll()
+        public async Task<List<RoomStyle>> GetAll()
         {
-            return await _context.Rooms.ToListAsync();  
+            return await _context.RoomStyles.ToListAsync();  
         }
     }
 }

@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.EntityFrameworkCore;
 
 namespace Async_Inn.Models
 {
-    public class Room
+    public class RoomStyle
     {
         public int Id { get; set; }
 

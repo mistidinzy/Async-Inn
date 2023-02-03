@@ -38,13 +38,13 @@
 
 ---
 
-## ERD Version 1.0
+## My ERD Version 1.0
 
 ![ERD Image](../images/Async-Inn-2.jpg)
 
 ---
 
-## ERD Version 2.0 / Final
+## My ERD Version 2.0 / Final
 
 ![ERD Final Image](../images/AsyncInnERDfinal.png)
 
@@ -108,5 +108,11 @@
 
 - This is the **PURE JOIN** table. It is to keep track of which rooms have which amenities available, and that’s it. (No Payload)
 - Each row contains one composite key, made up of one “*RoomStyle_ID*”, plus one “*Amenity_ID*”.
+
+---
+
+## Official ERD
+
+![Code Fellows ERD](https://bit.ly/40rgsgc)
 
 ---

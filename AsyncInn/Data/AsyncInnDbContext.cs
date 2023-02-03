@@ -6,16 +6,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Async_Inn.Data
 {
-    public class AsyncInnDbContext : IdentityDbContext<ApplicationUser>
+    public class AsyncInnDbContext : DbContext
     {
-       
-
         public AsyncInnDbContext(DbContextOptions options) : base(options)
         {
         }
 
         public DbSet<Hotel> Hotels { get; set; }
-        public DbSet<Room> Rooms { get; set; }
+        public DbSet<RoomStyle> RoomStyles { get; set; }
         public DbSet<Amenity> Amenities { get; set; }
         public DbSet<HotelRoom> HotelRooms { get; set; }
         public DbSet<RoomAmenity> RoomAmenities { get; set; }
@@ -29,12 +27,30 @@ namespace Async_Inn.Data
             modelBuilder.Entity<Hotel>().HasData(
                 new Hotel {
                     Id = 54,
-                    Name = "BananaTown",
+                    Name = "Banana Town",
                     StreetAddress = "42 Wallaby Way",
                     City = "Sydney",
                     State = "Iowa",
                     Country = "Australia",
                     Phone = "333-222-1111"
+                },
+                new Hotel {
+                    Id = 4,
+                    Name = "Cupcake Cabins",
+                    StreetAddress = "45 Sugar Street",
+                    City = "Gumdropton",
+                    State = "Chocolateville",
+                    Country = "Candy Land",
+                    Phone = "123-445-9922"
+                },
+                new Hotel {
+                    Id = 7,
+                    Name = "Northern Sky Inn",
+                    StreetAddress = "7746 Starlight Lane",
+                    City = "Schedar",
+                    State = "Cassiopeia",
+                    Country = "The Milky Way",
+                    Phone = "270-323-4106"
                 }
             );
 
@@ -57,6 +73,43 @@ namespace Async_Inn.Data
                     Name = "Free Wifi"
                 }
             );
+
+            modelBuilder.Entity<HotelRoom>().HasData(
+              new HotelRoom
+                {
+                  HotelId = 54,
+                  RoomId = 1,
+                  RoomNumber = 101,
+                  PetFriendly = true,
+                  IsHaunted = false
+                },
+
+              new HotelRoom
+                {
+                  HotelId = 4,
+                  RoomId = 2,
+                  RoomNumber = 101,
+                  PetFriendly = true,
+                  IsHaunted = true
+                },
+              new HotelRoom
+                {
+                  HotelId = 7,
+                  RoomId = 3,
+                  RoomNumber = 201,
+                  PetFriendly = true,
+                  IsHaunted = false
+                }
+              );
+
+      modelBuilder.Entity<RoomStyle>().HasData(
+              new RoomStyle
+                {
+                  Id = 2,
+                  Name = "Mint Condition",
+                  Layout= 1
+                }
+              );
 
             modelBuilder.Entity<HotelRoom>() 
                 .HasKey(hr => new { hr.HotelId, hr.RoomId }

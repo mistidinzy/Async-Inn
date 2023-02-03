@@ -25,6 +25,5 @@ namespace Async_Inn.Models
 
         [Required]
         public string Phone { get; set; }
-
     }
 }
