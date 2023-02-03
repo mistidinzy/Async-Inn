@@ -109,3 +109,7 @@ Let’s add some routes so that we can access the data through an API.
 7. Follow the instructions above to scaffold out the `Room` and `Amenity` Controllers as well.
 
 ---
+
+### [Testing CRUD in Postman - Screenshots](postman.md)
+
+---
