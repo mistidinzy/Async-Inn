@@ -34,7 +34,7 @@ For this part of the lab, follow along with the steps in the demo below.
 3. Register your `DbContext` in your startup file.
     - Configure your `appsettings.json` file to include your connection string.
 4. Go back to your `AsyncInnDbContext` file, and add a new property to include a new table into your database.
-    - `public DbSet<Hotel> Hotels {get; set;}`. 
+    - `public DbSet<Hotel> Hotels {get; set;}`.
     - Be sure to include the `Models` namespace into our current cs file.
 5. Now that you have your database registered, and a single table property inside of your `DbContext` file, create a new migration to see the script that creates and adds that table to the database:
     - Terminal: `dotnet ef migrations add AddHotelsTable`
@@ -96,7 +96,7 @@ After creating the seeded data, you will now want to create a new migration so t
 
 ### *Controllers*
 
-Now that we have completed our “Code First Migrations” in the directions above. 
+Now that we have completed our “Code First Migrations” in the directions above.
 
 Let’s add some routes so that we can access the data through an API.
 
