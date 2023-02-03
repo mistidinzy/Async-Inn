@@ -34,6 +34,8 @@
 
 ### [Lab 12 - Intro to Entity Framework](/README/Lab12.md)
 
+> ### [Postman CRUD](/README.md/postman.md)
+
 ### [Lab 13 - Dependency Injection](/README/Lab13.md)
 
 ### [Lab 14 - DTOs & Routing](/README/Lab14.md)
