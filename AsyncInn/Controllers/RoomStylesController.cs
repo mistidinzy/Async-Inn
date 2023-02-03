@@ -12,27 +12,27 @@ namespace Async_Inn.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class RoomsController : ControllerBase
+    public class RoomStylesController : ControllerBase
     {
         private readonly AsyncInnDbContext _context;
 
-        public RoomsController(AsyncInnDbContext context)
+        public RoomStylesController(AsyncInnDbContext context)
         {
             _context = context;
         }
 
         // GET: api/Rooms
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Room>>> GetRooms()
+        public async Task<ActionResult<IEnumerable<RoomStyle>>> GetRooms()
         {
-            return await _context.Rooms.ToListAsync();
+            return await _context.RoomStyles.ToListAsync();
         }
 
         // GET: api/Rooms/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Room>> GetRoom(int id)
+        public async Task<ActionResult<RoomStyle>> GetRoom(int id)
         {
-            var room = await _context.Rooms.FindAsync(id);
+            var room = await _context.RoomStyles.FindAsync(id);
 
             if (room == null)
             {
@@ -45,7 +45,7 @@ namespace Async_Inn.Controllers
         // PUT: api/Rooms/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutRoom(int id, Room room)
+        public async Task<IActionResult> PutRoom(int id, RoomStyle room)
         {
             if (id != room.Id)
             {
@@ -76,9 +76,9 @@ namespace Async_Inn.Controllers
         // POST: api/Rooms
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Room>> PostRoom(Room room)
+        public async Task<ActionResult<RoomStyle>> PostRoom(RoomStyle room)
         {
-            _context.Rooms.Add(room);
+            _context.RoomStyles.Add(room);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetRoom", new { id = room.Id }, room);
@@ -88,13 +88,13 @@ namespace Async_Inn.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteRoom(int id)
         {
-            var room = await _context.Rooms.FindAsync(id);
+            var room = await _context.RoomStyles.FindAsync(id);
             if (room == null)
             {
                 return NotFound();
             }
 
-            _context.Rooms.Remove(room);
+            _context.RoomStyles.Remove(room);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -102,7 +102,7 @@ namespace Async_Inn.Controllers
 
         private bool RoomExists(int id)
         {
-            return _context.Rooms.Any(e => e.Id == id);
+            return _context.RoomStyles.Any(e => e.Id == id);
         }
 
 

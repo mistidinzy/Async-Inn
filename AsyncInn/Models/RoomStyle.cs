@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Async_Inn.Models
 {
-    public class Room
+    public class RoomStyle
     {
         public int Id { get; set; }
 

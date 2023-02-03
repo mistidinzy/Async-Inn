@@ -12,6 +12,6 @@ namespace Async_Inn.Models
         public bool IsHaunted { get; set; }
 
         public List<Hotel> Hotels { get; set; }
-        public List<Room> Rooms { get; set; }
+        public List<RoomStyle> RoomStyles { get; set; }
     }
 }

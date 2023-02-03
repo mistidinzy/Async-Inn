@@ -7,11 +7,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Async_Inn.Services
 {
-    public interface IRoomRepository
+    public interface IRoomStyleRepository
     {
         //Promise to return a list of rooms
-        // We have to use task because we have an await 
-        Task<List<Room>> GetAll();
+        //We have to use task because we have an await 
+        Task<List<RoomStyle>> GetAll();
 
         
 
