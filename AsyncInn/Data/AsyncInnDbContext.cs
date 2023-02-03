@@ -27,12 +27,30 @@ namespace Async_Inn.Data
             modelBuilder.Entity<Hotel>().HasData(
                 new Hotel {
                     Id = 54,
-                    Name = "BananaTown",
+                    Name = "Banana Town",
                     StreetAddress = "42 Wallaby Way",
                     City = "Sydney",
                     State = "Iowa",
                     Country = "Australia",
                     Phone = "333-222-1111"
+                },
+                new Hotel {
+                    Id = 4,
+                    Name = "Cupcake Cabins",
+                    StreetAddress = "45 Sugar Street",
+                    City = "Gumdropton",
+                    State = "Chocolateville",
+                    Country = "Candy Land",
+                    Phone = "123-445-9922"
+                },
+                new Hotel {
+                    Id = 7,
+                    Name = "Northern Sky Inn",
+                    StreetAddress = "7746 Starlight Lane",
+                    City = "Schedar",
+                    State = "Cassiopeia",
+                    Country = "The Milky Way",
+                    Phone = "270-323-4106"
                 }
             );
 
