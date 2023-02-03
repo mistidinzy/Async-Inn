@@ -41,7 +41,7 @@ namespace AsyncInn
 
             //Add repository/services
 
-            services.AddScoped<IRoomRepository, DatabaseRoomRepository>();
+            services.AddScoped<IRoomStyleRepository, DatabaseRoomRepository>();
 
             services.AddSwaggerGen(options =>
             {
