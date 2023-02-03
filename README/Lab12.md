@@ -105,7 +105,7 @@ Let’s add some routes so that we can access the data through an API.
 3. Choose the `Entity Framework Scaffold for API` option.
 4. Select the `Hotel` Entity for your model.
 5. Select your `AsyncInnDbContext` as your DbContext.
-6. After it’s been scaffolded, confirm through [**Postman**](https://www.postman.com/) that your can do basic CRUD operations on the `Hotels` route.
+6. After it’s been scaffolded, confirm through [**Postman**](https://www.postman.com/) that you can do basic CRUD operations on the `Hotels` route.
 7. Follow the instructions above to scaffold out the `Room` and `Amenity` Controllers as well.
 
 ---
