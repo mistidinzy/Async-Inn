@@ -1,8 +1,0 @@
-version: '3.4'
-
-services:
-  asyncinn:
-    image: ${DOCKER_REGISTRY-}asyncinn
-    build:
-      context: .
-      dockerfile: AsyncInn/Dockerfile
