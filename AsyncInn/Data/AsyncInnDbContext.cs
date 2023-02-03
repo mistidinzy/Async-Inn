@@ -74,6 +74,34 @@ namespace Async_Inn.Data
                 }
             );
 
+            modelBuilder.Entity<HotelRoom>().HasData(
+              new HotelRoom
+                {
+                  HotelId = 54,
+                  RoomId = 1,
+                  RoomNumber = 101,
+                  PetFriendly = true,
+                  IsHaunted = false
+                },
+
+              new HotelRoom
+                {
+                  HotelId = 4,
+                  RoomId = 2,
+                  RoomNumber = 101,
+                  PetFriendly = true,
+                  IsHaunted = true
+                },
+              new HotelRoom
+                {
+                  HotelId = 7,
+                  RoomId = 3,
+                  RoomNumber = 201,
+                  PetFriendly = true,
+                  IsHaunted = false
+                }
+              );
+
             modelBuilder.Entity<HotelRoom>() 
                 .HasKey(hr => new { hr.HotelId, hr.RoomId }
             );
