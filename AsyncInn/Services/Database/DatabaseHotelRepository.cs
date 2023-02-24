@@ -17,37 +17,38 @@ namespace Async_Inn.Services.Database
       _context = context;
     }
 
+    //Create
     public async Task AddHotel(Hotel hotel)
     {
       _context.Hotels.Add(hotel);
       await _context.SaveChangesAsync();
     }
 
+    //Get All
     public async Task<List<Hotel>> GetAllHotels()
     {
       var hotels = await _context.Hotels.ToListAsync();
       return hotels;
     }
 
+    //Get One
     public async Task<Hotel> GetHotelById(int id)
     {
       return await _context.Hotels.FindAsync(id);
     }
 
-    public async Task TryDeleteHotel(int id)
-    {
-      //var hotel = await _context.Hotels.FindAsync(id);
-      //_context.Hotels.Remove(hotel);
-      //await _context.SaveChangesAsync();
-
-      Hotel hotel = await GetHotelById(id);
-      _context.Entry(hotel).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
-      await _context.SaveChangesAsync();
-    }
-
+    //Update
     public async Task UpdateHotel(int id, Hotel hotel)
     {
       _context.Entry(hotel).State = EntityState.Modified;
+      await _context.SaveChangesAsync();
+    }
+
+    //Delete
+    public async Task TryDeleteHotel(int id)
+    {
+      Hotel hotel = await GetHotelById(id);
+      _context.Entry(hotel).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
       await _context.SaveChangesAsync();
     }
 
